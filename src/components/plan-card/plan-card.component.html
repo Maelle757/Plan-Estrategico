@@ -1,0 +1,20 @@
+
+@if(plan(); as p) {
+    <div (click)="onSelect()" class="bg-white rounded-lg shadow-md h-full flex flex-col cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div class="p-5 border-b-4" [class.border-brand-accent]="p.progress < 100" [class.border-green-500]="p.progress === 100">
+            <h3 class="text-lg font-bold text-gray-800 truncate">{{ p.title }}</h3>
+            <p class="text-sm text-gray-500 mt-1">{{ p.areas.length }} {{ p.areas.length === 1 ? 'Área Estratégica' : 'Áreas Estratégicas' }}</p>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-end">
+             <div>
+                <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-brand-blue">Progreso del Plan</span>
+                    <span class="text-sm font-medium text-brand-blue">{{ p.progress }}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="h-2.5 rounded-full transition-all duration-500" [style.width.%]="p.progress" [class.bg-brand-accent]="p.progress < 100" [class.bg-green-500]="p.progress === 100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

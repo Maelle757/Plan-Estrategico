@@ -1,0 +1,5 @@
+{
+  "name": "Strategic Action Plan Dashboard",
+  "description": "An interactive dashboard for a General Manager to track a strategic action plan for a hydrocarbons company, featuring progress tracking and an AI-powered objective generator.",
+  "requestFramePermissions": []
+}
