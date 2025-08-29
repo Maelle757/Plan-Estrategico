@@ -12,17 +12,20 @@ export class GeminiService {
   private readonly MODEL_NAME = 'gemini-2.5-flash';
 
   constructor() {
-    const apiKey = process.env.API_KEY;
-    if (apiKey) {
+    // Safely check for process and environment variable
+    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+      const apiKey = process.env.API_KEY;
       this.ai = new GoogleGenAI({ apiKey });
     } else {
-      console.error('API_KEY environment variable not found.');
+      console.warn('Gemini API key not found. AI features will be disabled.');
     }
   }
 
   async generateStrategicArea(userPrompt: string): Promise<GeneratedArea> {
     if (!this.ai) {
-      throw new Error('Gemini AI client is not initialized. Please provide an API_KEY.');
+      console.error('Gemini AI client is not initialized. Please provide an API_KEY in your environment.');
+      // Return a mock error response or throw an error to be caught by the component
+      throw new Error('El servicio de IA no está configurado. Por favor, revisa la configuración de la clave API.');
     }
 
     const systemInstruction = `
